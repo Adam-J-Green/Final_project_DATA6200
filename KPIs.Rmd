@@ -1,0 +1,72 @@
+---
+title: "KPIs"
+output: html_document
+date: "2022-11-22"
+---
+### Dashboard Purpose
+This dashboard was created with the intended purpose being for users to explore trends in in the OSHA data that could be indicative high danger industries, regions, and sectors as well as potential lapses in workplace safety practices. The target audience for this dashboard includes occupational health policy makers as well as individuals looking to pursue careers in new industries/locations who may have worries of occupational health risk.  
+
+### Statement of Ethics
+I declare that the ideas and code presented in this dashboard are my own, except where otherwise noted with citation provided and that the use of the data in this dashboard does not break any laws in the origin country or my own. This dashboard is not intended for privatized use or policy decision making without additional vetting of the data and my methods.  Finally, the potential ethical implications of this dataset and dashboard have been explored to determine that the information does not pose a direct threat to the security, privacy or health of any individual.         
+
+### The Data
+The data used in the creation of this dashboard was retrieved from the [United States Department of Labor Website]('https://www.osha.gov/Establishment-Specific-Injury-and-Illness-Data').  The data spans the years from 2017-2020 including reporting for all businesses under OSHA guidelines.	In addition to the OSHA data, I also chose to join additional data from a zipcodes dataset to generate latitude and longitude coordinates for each business. For the majority of my dashboard, 2020 data was used exclusively, however you will see on the third page that a time based analysis is available.  This was done through combining data ranging from 2017 to present. Before the final dataset was complete, it was preprocessed to remove rows and columns that were unnecessary or incomplete. This removed NA values, dropped rows where all key indicators were 0, dropped unused columns and removed outliers based on a decision point of +/-1.5 times the interquartile range. The final primary dataset contained 78433 observations of 31 variables while the yearly combined data contained 891717 observations across 26 variables.
+
+### Variables of Interest
+
+**Size:** This variable can take on one of three levels, small (<20 employees), medium (20-249 employees), or large (250+ employees). Size is determined by total number of employees to work at the establishment over the course of the year, not by average number of employees over the course of the year.
+
+**Establishment type:** Indicates the sector which the business operates within. Either private, state government or local government.
+
+**Total days away from work (total_dafw_days):** A general count of the days of work missed due to workplace injury or illness.
+
+**Total number of injuries:** A general count of workplace injuries of any kind.
+
+**Injury Rate:** Derived column calculated as (total injuries x 200 000)/total hours worked.  This formula is provided by the United States Department of Labor Website
+
+**Days Missed Per Case** Derived column calculated as the total number of days away from work due to workplace illness and injury divided by the sum of total injuries and total illnesses.  This metric effectively serves as a gauge of severity for the average injury/illness 
+
+**Total number of illnesses:** Calculated column to sum all illnesses reported.  This variable includes poisonings, skin disorders, respiratory disorders, hearing loss, and other illnesses.
+
+**Total number of respiratory illnesses:**  Column indicating the total number of respiratory illnesses incurred in the workplace. This column includes reporting of work-based COVID-19 illnesses.
+
+**Average annual employees:** Average number of employees working at the company for the reporting year. This variable was used as a measure of business size when exploring relationships between injury/illness and business size.
+
+### Key Relationships
+
+**Average annual employees vs. injury and illness indicators:** Exploratory analysis plots located on the app home page provides indication of the relationship between business size and injury rates. These indicators display the trend of more employees leading to greater injury and illness occurrences. Additionally, these plots can help in identifying outliers with respect to this trend (ie. high illness and injury counts with few average employees).   
+
+**Total injuries and illnesses:** Displayed in the second figure on the EDA page, exploration of specific businesses with respect to their counts of total illnesses and injuries aimed to map the relationship between these two variables while gaining insight into the industries with the highest respective injury and illness occurrences  
+
+**Injury occurrences by state:** Displayed on the location analysis page of the app, figures were used to indicate the states with the levels of workplace injury while also observing how company size impacts these trends.  This relationship is useful in determining the most dangerous regions with respect to occupational safety and potential areas where targeted safety initiatives may be needed.   
+
+**Total Injury and Illness by Year:** This relationship is displayed on the "Yearly Trends" page of my dashboard and explains how total injury and illness counts have changed over the previous 4 years.  This information can be useful in understanding the success of deployed occupational safety initiatives as well as indicating improvements or deficits in occupational health.
+
+**Total Respiratory Illnesses by Year:** The final key relationship explored on the "Yearly Trends" page is the change in respiratory illness across years.  The displayed figures are of interest due to the steep increase in workplace respiratory illness that is seen in 2020 stemming from the COVID-19 pandemic. In the future, this information could be useful in modelling the workplace transmission of COVID-19 and other illnesses especially when exploring the relationship at low regional levels.   
+
+### References:
+United States Department of Labor. (2022). Establishment Specific Injury and Illness Data. Retrieved from
+https://www.osha.gov/Establishment-Specific-Injury-and-Illness-Data
+
+SimpleMaps. (2022). US Zip Codes Database. Retrieved from 
+https://simplemaps.com/data/us-zips
+
+Radecic, D. (2021). Leaflet vs. Tmap – Which Should You Use to Build Interactive Maps with R and R Shiny. Retrieved from
+https://appsilon.com/leaflet-vs-tmap-build-interactive-maps-with-r-shiny/
+
+Schloerke, B. (2018).  An R Interface to Leaflet Maps. Retrieved from
+https://github.com/rstudio/leaflet/blob/main/inst/examples/labels.R
+
+Tutorials point. (2022). R - Mean, Median and Mode. Retrieved from https://www.tutorialspoint.com/r/r_mean_median_mode.htm
+
+Schork, J. (N.D.). Draw ggplot2 Barplot with Round Corners in R (2 Examples) | ggchicklet Package. Retrieved from
+https://statisticsglobe.com/draw-ggplot2-barplot-round-corners-r
+
+R-Graph Gallery. (2018). Grouped, Stacked and Percent Stacked Barplot in ggplot2. Retrieved from
+https://r-graph-gallery.com/48-grouped-barplot-with-ggplot2
+
+United States Bureau of Labour Statistics. (2013). Using Workplace Safety and Health Data for Injury Prevention. Retrieved from
+https://www.bls.gov/opub/mlr/2013/article/pdf/using-workplace-safety-data-for-prevention.pdf
+
+Datanovia. (2020, May 6). GGplot colors best tricks you will love. Retrieved from https://www.datanovia.com/en/blog/ggplot-colors-best-tricks-you-will-love/
+
